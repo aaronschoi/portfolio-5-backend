@@ -1,0 +1,21 @@
+{
+  "name": "portfolio-5-backend",
+  "version": "1.0.0",
+  "description": "The backend API for my my current portfolio.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "start:dev": "nodemon src/server.js"
+  },
+  "keywords": [],
+  "author": "AaronChoi",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "knex": "^0.95.6",
+    "nodemon": "^2.0.8",
+    "pg": "^8.6.0"
+  }
+}
