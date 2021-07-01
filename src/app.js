@@ -7,6 +7,7 @@ const notFound = require("./errors/notFound");
 const app = express();
 
 const messagesRouter = require('./messages/messages.router');
+const helloRouter = require('./hello/hello.router');
 
 app.options('*', cors());
 
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/messages', messagesRouter);
+app.use('/hello', helloRouter)
 
 app.use(notFound);
 app.use(errorHandler);
