@@ -15,48 +15,6 @@ const messageIDExists = async (req, res, next) => {
   }
 };
 
-const fromOfMessageExists = (req, res, next) => {
-  const { from } = req.body.data;
-  if(from){
-    if(/\S/.test(from)){
-      return next();
-      }
-      else{
-        return next({
-          message:"There is insufficient information regarding who sent this message.",
-          status: 400,
-        })
-      }
-  }
-  else{
-    return next({
-      message: "Please let me know who this message is from. Thank You!",
-      status:400,
-    })
-  }
-}
-
-const bodyOfMessageExists = (req, res, next) => {
-  const { message } = req.body.data;
-  if(message) {
-    if(/\S/.test(message)){
-    return next();
-    }
-    else{
-      return next({
-        message:"The message cannot be left blank. Thank you!",
-        status: 400,
-      })
-    }
-  }
-  else{
-    return next({
-      message:"A message body is required to send. Thank you!",
-      status: 400,
-    })
-  }
-}
-
 const create = async (req, res, next) => {
     const newMessage = {...req.body.data, status:"open"}
     const data = await service.create(newMessage);
@@ -75,8 +33,7 @@ const list = async (req, res, next) => {
 };
 
 module.exports = {
-  create: [aeb(fromOfMessageExists),aeb(bodyOfMessageExists),aeb(create)],
+  create: [aeb(create)],
   update: [aeb(messageIDExists), aeb(update)],
-  delete: [],
   list: [aeb(list)],
 };
